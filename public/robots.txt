@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://survivalschool.ai/sitemap.xml
+Sitemap: https://aisurvivalschool.online/sitemap.xml

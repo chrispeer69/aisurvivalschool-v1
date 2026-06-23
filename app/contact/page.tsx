@@ -45,7 +45,7 @@ export default function ContactPage() {
                   <li className="flex gap-3">
                     <span className="dot dot-orange mt-2 flex-shrink-0" />
                     <div>
-                      <strong className="text-ink">Cohort question</strong> — anything about the live four-week program.
+                      <strong className="text-ink">Cohort question</strong> — anything about the live 12-week program.
                     </div>
                   </li>
                   <li className="flex gap-3">

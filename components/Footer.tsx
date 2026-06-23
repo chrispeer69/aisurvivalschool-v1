@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { site } from "@/content/site";
+import { Uncomfortable } from "./Uncomfortable";
 
 type Props = { footer?: typeof site.footer };
 
@@ -15,13 +16,22 @@ export function Footer({ footer = site.footer }: Props) {
             <p className="text-paper-dim text-sm max-w-prose leading-relaxed">{footer.brand}</p>
           </div>
 
-          <div className="md:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-8">
+          <div className="md:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-8">
             {footer.columns.map((col) => (
               <div key={col.title}>
                 <div className="eyebrow text-orange mb-3">{col.title}</div>
                 <ul className="space-y-2 text-sm">
                   {col.links.map((link) => {
                     const external = "external" in link && link.external;
+                    const wordmark = "wordmark" in link && link.wordmark;
+                    const labelContent = wordmark ? (
+                      <>
+                        <Uncomfortable />
+                        {link.label.replace("#UNCOMFORTABLE", "")}
+                      </>
+                    ) : (
+                      link.label
+                    );
                     return (
                       <li key={link.label}>
                         {external ? (
@@ -31,7 +41,7 @@ export function Footer({ footer = site.footer }: Props) {
                             rel="noopener noreferrer"
                             className="text-paper-dim hover:text-orange transition-colors"
                           >
-                            {link.label} ↗
+                            {labelContent} ↗
                           </a>
                         ) : (
                           <Link

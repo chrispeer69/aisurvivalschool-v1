@@ -192,6 +192,42 @@ body {
   outline-offset: 2px;
 }
 
+/* #UNCOMFORTABLE book brand — "Armstrong": the book's condensed wordmark
+   font (Oswald via --font-armstrong) in vibrant yellow #FCD116. */
+.uncomfortable {
+  font-family: var(--font-armstrong), "Arial Narrow", sans-serif;
+  font-weight: 700;
+  color: #fcd116;
+  letter-spacing: 0.03em;
+}
+
+.btn-armstrong {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #fcd116;
+  color: #14181e;
+  padding: 0.85rem 1.5rem;
+  font-family: var(--font-armstrong), "Arial Narrow", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid #fcd116;
+  transition: background-color 150ms ease, transform 150ms ease;
+}
+
+.btn-armstrong:hover {
+  background: #fdb913;
+  transform: translateY(-1px);
+}
+
+.btn-armstrong:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px #fcd116;
+}
+
 /* Status dots */
 .dot {
   display: inline-block;

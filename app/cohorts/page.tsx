@@ -6,18 +6,18 @@ import { Reveal } from "@/components/Reveal";
 import { WaitlistForm } from "@/components/forms/WaitlistForm";
 
 export const metadata: Metadata = {
-  title: "Cohorts · 4-week live AI training",
+  title: "Cohorts · 12-week live AI training",
   description:
-    "Live four-week AI Survival cohort. Two sessions per week, real curriculum, real homework. Small group of operators going from AI-curious to AI-capable.",
+    "Live twelve-week AI Survival cohort. One module per week, real curriculum, real homework. Small group of operators going from AI-curious to AI-capable.",
 };
 
 const formatItems = [
-  { eyebrow: "4 weeks", body: "Tight, focused, no filler. Most operators finish in real time." },
-  { eyebrow: "2 live sessions / week", body: "Tuesday teach. Thursday hands-on. 90 minutes each." },
+  { eyebrow: "12 weeks", body: "One module a week. Steady, no filler. Real skills that build on each other." },
+  { eyebrow: "1 live session / week", body: "One module per week — teaching plus hands-on. 90 minutes." },
   { eyebrow: "Recordings", body: "Every session recorded. Miss one, catch up that night." },
   { eyebrow: "Small group", body: "Capped intentionally so you actually get airtime." },
-  { eyebrow: "Real homework", body: "Five tools you build during the cohort, tied to your business." },
-  { eyebrow: "Private community", body: "Operator-only chat. The cohort runs hot for the full month." },
+  { eyebrow: "Real homework", body: "Tools you build during the cohort, tied to your business." },
+  { eyebrow: "Private community", body: "Operator-only chat. The cohort runs hot for the full 12 weeks." },
 ] as const;
 
 export default function CohortsPage() {
@@ -26,7 +26,7 @@ export default function CohortsPage() {
       <PageHeader
         eyebrow="Online cohort · live"
         headlineParts={[
-          { text: "4-week AI Survival cohort. ", italic: false },
+          { text: "12-week AI Survival cohort. ", italic: false },
           { text: "Live every Tuesday.", italic: true },
         ]}
         subhead="Small group, live instruction, real curriculum, real homework. The fastest way to go from AI-curious to AI-capable without leaving your business."
@@ -39,7 +39,7 @@ export default function CohortsPage() {
           </Reveal>
           <Reveal delay={80}>
             <h2 className="display-md mt-5 text-[2rem] sm:text-[2.6rem] max-w-3xl">
-              Built for operators who don&rsquo;t have time for a 12-week course.
+              Built for operators who want real skills, one week at a time.
             </h2>
           </Reveal>
 
@@ -58,8 +58,8 @@ export default function CohortsPage() {
 
       <CurriculumGrid
         eyebrow="The cohort curriculum"
-        headline="Eight modules across four weeks."
-        subhead="Tuesday sessions cover one or two modules. Thursday sessions are hands-on builds. By Friday you've shipped something real."
+        headline="Twelve modules across twelve weeks."
+        subhead="One module a week — teaching plus a hands-on build. By the end of each week you've shipped something real."
         tone="light"
       />
 
@@ -80,12 +80,12 @@ export default function CohortsPage() {
                 <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="border border-orange p-6">
                     <span className="chip chip-next w-fit">Early bird</span>
-                    <p className="display-md mt-4 text-[2.6rem] text-orange">$497</p>
+                    <p className="display-md mt-4 text-[2.6rem] text-orange">$749</p>
                     <p className="mt-2 text-paper/70 text-sm">First 15 seats per cohort.</p>
                   </div>
                   <div className="border border-steel-line p-6">
                     <span className="eyebrow text-paper/60">Regular</span>
-                    <p className="display-md mt-4 text-[2.6rem] text-paper">$797</p>
+                    <p className="display-md mt-4 text-[2.6rem] text-paper">$899</p>
                     <p className="mt-2 text-paper/70 text-sm">Remaining seats once early bird sells.</p>
                   </div>
                 </div>
@@ -102,10 +102,10 @@ export default function CohortsPage() {
                 <div className="bg-steel-2 border border-steel-line p-7 sm:p-8">
                   <span className="chip chip-phase w-fit">Next cohort</span>
                   <h3 className="serif mt-5 text-[1.8rem] leading-tight text-paper">
-                    Dates: <em className="text-orange">TBD</em> — join the waitlist for first dibs.
+                    Classes start <em className="text-orange">August 28</em> — join the waitlist for first dibs.
                   </h3>
                   <p className="mt-4 text-paper/70 text-sm leading-relaxed">
-                    Cohorts run when there&rsquo;s a full small group. Waitlist members get the next dates 48 hours before public announcement, plus the early-bird price locked in.
+                    Seats are limited and the small group fills fast. Waitlist members lock in the early-bird price and get first pick before public announcement.
                   </p>
                 </div>
               </Reveal>

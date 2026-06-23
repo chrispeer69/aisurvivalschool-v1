@@ -1,11 +1,12 @@
 import type { MetadataRoute } from "next";
 
-const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://survivalschool.ai";
+const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://aisurvivalschool.online";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   return [
     { url: `${base}/`, lastModified: now, priority: 1 },
+    { url: `${base}/in-person`, lastModified: now, priority: 0.9 },
     { url: `${base}/workshops`, lastModified: now, priority: 0.9 },
     { url: `${base}/cohorts`, lastModified: now, priority: 0.9 },
     { url: `${base}/course`, lastModified: now, priority: 0.85 },

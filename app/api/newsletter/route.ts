@@ -51,8 +51,8 @@ export async function POST(req: Request) {
       to: defaultRecipient(),
       from: defaultFromAddress(),
       subject: `AI Survival newsletter signup · ${data.email}`,
-      text: renderTextBody("New newsletter signup on survivalschool.ai.", fields, meta),
-      html: renderHtmlBody("New newsletter signup on survivalschool.ai.", fields, meta),
+      text: renderTextBody("New newsletter signup on aisurvivalschool.online.", fields, meta),
+      html: renderHtmlBody("New newsletter signup on aisurvivalschool.online.", fields, meta),
       replyTo: data.email,
     });
   } catch (err) {

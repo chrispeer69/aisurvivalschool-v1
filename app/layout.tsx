@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Fraunces, Inter, Oswald } from "next/font/google";
 import "@/styles/globals.css";
 
 const fraunces = Fraunces({
@@ -17,7 +17,16 @@ const inter = Inter({
   weight: ["300", "400", "500", "600", "700"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://survivalschool.ai";
+// "Armstrong" font — the condensed bold the #UNCOMFORTABLE book itself uses
+// for its wordmark. Wired through --font-armstrong.
+const armstrong = Oswald({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-armstrong",
+  weight: ["500", "600", "700"],
+});
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://aisurvivalschool.online";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -68,7 +77,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${inter.variable}`}>
+    <html lang="en" className={`${fraunces.variable} ${inter.variable} ${armstrong.variable}`}>
       <body className="min-h-screen flex flex-col">
         <a href="#main" className="skip-link">
           Skip to content

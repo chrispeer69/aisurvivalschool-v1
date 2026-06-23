@@ -8,6 +8,7 @@ export const site = {
   nav: {
     brand: "AI Survival School",
     links: [
+      { label: "In-Person", href: "/in-person" },
       { label: "Workshops", href: "/workshops" },
       { label: "Cohorts", href: "/cohorts" },
       { label: "Course", href: "/course" },
@@ -18,11 +19,12 @@ export const site = {
   },
   footer: {
     brand:
-      "AI Survival School teaches small business owners, operators, and tradespeople how to use AI before AI uses them. Built by Christopher D. Peer — operator, founder, author of #UNCOMFORTABLE.",
+      "AI Survival School teaches small business owners, operators and trades people what AI is and how to use it to stay ahead. Come to learn, stay for the community.",
     columns: [
       {
         title: "Learn",
         links: [
+          { label: "In-person learning", href: "/in-person" },
           { label: "In-person workshops", href: "/workshops" },
           { label: "Online cohorts", href: "/cohorts" },
           { label: "Self-paced course", href: "/course" },
@@ -34,14 +36,22 @@ export const site = {
         links: [
           { label: "About", href: "/about" },
           { label: "Contact", href: "/contact" },
-          {
-            label: "TowCommand Pro",
-            href: "https://towcommand.ai",
-            external: true,
-          },
+        ],
+      },
+      {
+        title: "Resources",
+        links: [
           {
             label: "#UNCOMFORTABLE (the book)",
             href: "https://uncomfortable.manus.space/",
+            external: true,
+            wordmark: true,
+          },
+          { label: "Layers (the book)", href: "#" },
+          { label: "Hook, Haul & Hustle (the book)", href: "#" },
+          {
+            label: "Peerfield Press",
+            href: "https://peerfieldpress.com",
             external: true,
           },
         ],
@@ -51,6 +61,11 @@ export const site = {
         links: [
           { label: "Newsletter", href: "/resources#newsletter" },
           { label: "Email Chris", href: "/contact" },
+          {
+            label: "Central Ohio Networkers",
+            href: "https://centralohionetworkers.com/event-calendar",
+            external: true,
+          },
         ],
       },
     ],

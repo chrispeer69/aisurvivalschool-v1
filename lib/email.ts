@@ -109,5 +109,5 @@ export function renderHtmlBody(intro: string, fields: Field[], meta: Field[]): s
 }
 
 export function defaultRecipient(): string {
-  return process.env.INQUIRY_TO_EMAIL ?? "thechrispeer@gmail.com";
+  return process.env.INQUIRY_TO_EMAIL ?? "chris@bluecollarai.online";
 }

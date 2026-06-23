@@ -10,7 +10,7 @@ type Props = {
 
 export function CurriculumGrid({
   eyebrow = "The curriculum",
-  headline = "Eight modules. Every one practical.",
+  headline = "Twelve modules. Every one practical.",
   subhead = "Same curriculum across cohorts and the self-paced course. Workshops pull from these modules and tune to your industry.",
   tone = "light",
 }: Props) {
@@ -46,29 +46,51 @@ export function CurriculumGrid({
           </Reveal>
         ) : null}
 
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-ink/10">
-          {curriculum.map((m, i) => (
-            <Reveal key={m.numeral} delay={i * 50}>
-              <article
-                className={`h-full p-7 ${
-                  isDark ? "bg-steel-2" : "bg-paper"
-                }`}
-              >
-                <div className="module-numeral">{m.numeral}</div>
-                <h3 className="serif mt-3 text-[1.3rem] leading-tight">
-                  {m.title}
-                </h3>
-                <p
-                  className={`mt-3 text-sm leading-relaxed ${
-                    isDark ? "text-paper/70" : "text-ink-mid"
+        {curriculum.map((group) => (
+          <div key={group.tier} className="mt-12">
+            <Reveal>
+              <div className="flex items-baseline justify-between border-b border-ink/15 pb-3">
+                <h3
+                  className={`serif text-[1.5rem] sm:text-[1.8rem] ${
+                    isDark ? "text-paper" : "text-ink"
                   }`}
                 >
-                  {m.body}
-                </p>
-              </article>
+                  {group.tier}
+                </h3>
+                <span
+                  className={`text-sm uppercase tracking-wide ${
+                    isDark ? "text-paper/55" : "text-ink-mid"
+                  }`}
+                >
+                  {group.weeks}
+                </span>
+              </div>
             </Reveal>
-          ))}
-        </div>
+            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-ink/10">
+              {group.modules.map((m, i) => (
+                <Reveal key={m.numeral} delay={i * 50}>
+                  <article
+                    className={`h-full p-7 ${
+                      isDark ? "bg-steel-2" : "bg-paper"
+                    }`}
+                  >
+                    <div className="module-numeral">{m.numeral}</div>
+                    <h4 className="serif mt-3 text-[1.3rem] leading-tight">
+                      {m.title}
+                    </h4>
+                    <p
+                      className={`mt-3 text-sm leading-relaxed ${
+                        isDark ? "text-paper/70" : "text-ink-mid"
+                      }`}
+                    >
+                      {m.body}
+                    </p>
+                  </article>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );

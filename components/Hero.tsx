@@ -11,17 +11,17 @@ export function Hero() {
           <div className="lg:col-span-7">
             <Reveal>
               <p className="eyebrow text-orange">
-                AI training for real businesses
+                AI Training for small business owners
               </p>
             </Reveal>
             <Reveal delay={80}>
               <h1 className="display mt-6 text-[2.6rem] sm:text-[3.6rem] lg:text-[4.4rem]">
-                Learn AI <em className="accent-italic not-italic"><span className="italic">before</span></em> AI replaces you.
+                Learn AI and <em className="accent-italic not-italic"><span className="italic">stay ahead of the competition.</span></em>
               </h1>
             </Reveal>
             <Reveal delay={160}>
               <p className="mt-7 text-lg text-paper/75 max-w-prose leading-relaxed">
-                AI Survival School teaches the operators, owners, and tradespeople running real businesses how to use AI to save time, save money, and stay in business.
+                AI is changing every industry. AI Survival School teaches small business owners, operators, and tradespeople how to use it — and keeps them ahead. Come for the skills, stay for the community.
               </p>
             </Reveal>
             <Reveal delay={240}>
@@ -38,7 +38,7 @@ export function Hero() {
             <Reveal delay={320}>
               <hr className="hairline text-paper mt-14" />
               <p className="serif italic mt-8 text-paper/80 text-lg max-w-prose leading-snug">
-                From the operator who learned to survive — and now teaches you how.
+                I taught myself AI over thousands of hours. Now I share it with you.
               </p>
             </Reveal>
           </div>
@@ -54,24 +54,24 @@ export function Hero() {
                 </div>
                 <hr className="hairline text-paper my-5" />
                 <h2 className="serif text-[1.55rem] leading-tight">
-                  16 trucks. <em className="text-orange">$650/mo cancelled.</em> One platform built alongside Claude.
+                  A towing business with 16 trucks and <em className="text-orange">$2,500 a month</em> in software rental.
                 </h2>
                 <p className="mt-5 text-sm text-paper/70 leading-relaxed">
-                  I&rsquo;m Chris. I run Roadside Towing &amp; Recovery in Columbus, Ohio. I was paying $650 a month for software that hadn&rsquo;t shipped a real new feature in years. So I learned AI, built TowCommand Pro, and cancelled the bill.
+                  I&rsquo;m Chris. I run towing companies in Columbus, Ohio — 16 trucks strong. I got tired of paying $2,500 a month for software that couldn&rsquo;t keep up, so I taught myself AI and built my own. Thousands of hours later, I help other small business owners do the same, in a community built on learning together.
                 </p>
 
                 <div className="mt-7 grid grid-cols-3 gap-3 text-[0.7rem] text-paper/55">
                   <div className="border border-steel-line p-3">
-                    <div className="text-paper text-sm">10 sessions</div>
-                    <div className="mt-1">Shipped in days, not months</div>
+                    <div className="text-paper text-sm">16 trucks</div>
+                    <div className="mt-1">Towing in Columbus, OH</div>
                   </div>
                   <div className="border border-steel-line p-3">
-                    <div className="text-paper text-sm">$650/mo</div>
-                    <div className="mt-1">Bloated software cancelled</div>
+                    <div className="text-paper text-sm">$2,500/mo</div>
+                    <div className="mt-1">Old software rental</div>
                   </div>
                   <div className="border border-steel-line p-3">
-                    <div className="text-paper text-sm">1 founder</div>
-                    <div className="mt-1">Operator + Claude as co-founder</div>
+                    <div className="text-paper text-sm">1,000s hrs</div>
+                    <div className="mt-1">Self-taught, now teaching</div>
                   </div>
                 </div>
               </div>

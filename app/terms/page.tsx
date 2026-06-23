@@ -18,7 +18,7 @@ export default function TermsPage() {
 
         <div className="space-y-6 text-lg text-ink leading-relaxed">
           <p>
-            By using survivalschool.ai, by submitting an inquiry, by attending a workshop, or by enrolling in a cohort or course you agree to these terms. AI Survival School is operated by Christopher D. Peer / Blue Collar AI.
+            By using aisurvivalschool.online, by submitting an inquiry, by attending a workshop, or by enrolling in a cohort or course you agree to these terms. AI Survival School is operated by Christopher D. Peer / Blue Collar AI.
           </p>
 
           <h2 className="display-md text-[1.6rem] mt-10">The site</h2>

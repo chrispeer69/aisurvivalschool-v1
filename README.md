@@ -26,7 +26,7 @@ See `.env.example`. Set the same values in Vercel.
 ## Pages
 - `/` — home
 - `/workshops` — in-person business workshops
-- `/cohorts` — 4-week online cohort
+- `/cohorts` — 12-week online cohort
 - `/course` — self-paced course (pre-launch)
 - `/about` — Chris's story
 - `/resources` — newsletter, YouTube, free downloads

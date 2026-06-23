@@ -27,7 +27,7 @@ export function HowItWorks() {
         </Reveal>
         <Reveal delay={80}>
           <h2 className="display-md mt-5 text-[2rem] sm:text-[2.8rem] max-w-3xl">
-            Three things every operator needs to know about AI.
+            Three things everyone needs to know about AI.
           </h2>
         </Reveal>
 

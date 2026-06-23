@@ -56,7 +56,7 @@ export async function POST(req: Request) {
   ];
 
   const subject = `New AI Survival ${sourceLabel} signup · ${data.fullName}`;
-  const intro = `A new ${sourceLabel} signup was submitted on survivalschool.ai. Reply directly to reach them.`;
+  const intro = `A new ${sourceLabel} signup was submitted on aisurvivalschool.online. Reply directly to reach them.`;
 
   try {
     await sendEmailViaResend({

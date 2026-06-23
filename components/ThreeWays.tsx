@@ -3,16 +3,23 @@ import { Reveal } from "./Reveal";
 
 const ways = [
   {
+    chip: "Tuesdays · Polaris",
+    title: "In-Person Learning",
+    body: "1-hour classes every Tuesday at COhatch in Polaris. Small business owners join a class and go from beginner to mastering AI over 12 weeks.",
+    href: "/in-person",
+    cta: "Join a class",
+  },
+  {
     chip: "On-site",
-    title: "In-Person Workshops",
-    body: "Half-day or full-day, delivered at your business. 10-25 people, custom curriculum tuned to your industry.",
+    title: "In-Person Team Workshops",
+    body: "Half-day or full-day AI training delivered at your business. 10-25 people, custom curriculum tuned to your industry.",
     href: "/workshops",
     cta: "See workshops",
   },
   {
-    chip: "Live · 4 weeks",
-    title: "Online Cohorts",
-    body: "Small group, two live sessions per week, real homework. Go from AI-curious to AI-capable in 30 days.",
+    chip: "Live · 12 weeks",
+    title: "Live 12-Week Online Cohorts",
+    body: "Small online classes, one live session a week. Go from AI-curious to AI-capable in 30 days — and master AI in as little as 90.",
     href: "/cohorts",
     cta: "See cohort details",
   },
@@ -31,7 +38,7 @@ export function ThreeWays() {
       <div className="atmosphere-orange" aria-hidden />
       <div className="relative mx-auto max-w-editorial px-5 sm:px-8 py-20 sm:py-28">
         <Reveal>
-          <p className="eyebrow text-orange">Three ways to learn</p>
+          <p className="eyebrow text-orange">Four ways to learn</p>
         </Reveal>
         <Reveal delay={80}>
           <h2 className="display-md mt-5 text-[2rem] sm:text-[2.8rem] max-w-3xl">
@@ -39,7 +46,7 @@ export function ThreeWays() {
           </h2>
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {ways.map((w, i) => (
             <Reveal key={w.title} delay={i * 80}>
               <article className="h-full bg-steel-2 border border-steel-line p-8 flex flex-col">

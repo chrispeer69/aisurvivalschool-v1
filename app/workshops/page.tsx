@@ -32,7 +32,7 @@ const industriesServed = [
 const tiers = [
   {
     name: "Half-day workshop",
-    price: "$2,500",
+    price: "$1,500",
     duration: "3 hours",
     body: "Foundations track. AI explained without jargon. Daily-life uses. Two business uses tuned to your industry. Hands-on prompting.",
     bullets: [
@@ -43,7 +43,7 @@ const tiers = [
   },
   {
     name: "Full-day workshop",
-    price: "$4,500",
+    price: "$2,500",
     duration: "6 hours",
     body: "Full survival track. Foundations + business uses + agents + a hands-on build session. Every attendee leaves with a working AI tool tied to your business.",
     bullets: [
@@ -71,7 +71,7 @@ export default function WorkshopsPage() {
   return (
     <SiteShell>
       <PageHeader
-        eyebrow="In-person workshops"
+        eyebrow="In-person team workshops"
         headlineParts={[
           { text: "Bring AI Survival School ", italic: false },
           { text: "to your team.", italic: true },
@@ -231,6 +231,42 @@ export default function WorkshopsPage() {
               </span>
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      <section className="bg-steel text-paper">
+        <div className="mx-auto max-w-editorial px-5 sm:px-8 py-16 sm:py-20">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:items-center">
+            <div className="lg:col-span-8">
+              <Reveal>
+                <p className="eyebrow text-orange">Meet me in person</p>
+              </Reveal>
+              <Reveal delay={80}>
+                <h2 className="display-md mt-5 text-[1.8rem] sm:text-[2.4rem]">
+                  Catch me at a Central Ohio Networkers event.
+                </h2>
+              </Reveal>
+              <Reveal delay={140}>
+                <p className="mt-5 text-paper/75 leading-relaxed max-w-prose">
+                  I&rsquo;m a regular around the Columbus networking scene. Check the
+                  Central Ohio Networkers calendar, come find me at an event, and talk
+                  AI with an operator face-to-face before you book a workshop.
+                </p>
+              </Reveal>
+            </div>
+            <div className="lg:col-span-4 lg:justify-self-end">
+              <Reveal delay={160}>
+                <a
+                  href="https://centralohionetworkers.com/event-calendar"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary"
+                >
+                  View the event calendar ↗
+                </a>
+              </Reveal>
+            </div>
+          </div>
         </div>
       </section>
 

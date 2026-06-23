@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 const included = [
-  "8 modules · ~40 video lessons",
+  "12 modules · self-paced video lessons",
   "Downloadable prompts library you actually use",
   "Monthly community Q&A calls (live)",
   "Private community access",
@@ -75,7 +75,7 @@ export default function CoursePage() {
 
       <CurriculumGrid
         eyebrow="The course curriculum"
-        headline="Eight modules. ~40 lessons. Lifetime access."
+        headline="Twelve modules. Self-paced. Lifetime access."
         subhead="Same curriculum the cohort runs through, recorded for you to pace yourself. Watch on your phone in the truck or at the desk after hours."
         tone="light"
       />

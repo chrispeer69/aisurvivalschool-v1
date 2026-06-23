@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Reveal } from "./Reveal";
+import { Uncomfortable } from "./Uncomfortable";
 
 export function FounderCallout() {
   return (
@@ -18,7 +19,8 @@ export function FounderCallout() {
                   <div>
                     <div className="eyebrow text-orange">Christopher D. Peer</div>
                     <p className="serif italic text-paper text-[1.3rem] mt-2 leading-tight">
-                      Operator. Founder. <br /> Author of #UNCOMFORTABLE.
+                      Operator. Founder. <br /> Author of{" "}
+                      <Uncomfortable className="not-italic" /> &amp; Layers.
                     </p>
                   </div>
                 </div>
@@ -32,17 +34,17 @@ export function FounderCallout() {
             </Reveal>
             <Reveal delay={80}>
               <h2 className="display-md mt-5 text-[2.2rem] sm:text-[3rem] max-w-3xl">
-                I&rsquo;m not a professor. <em className="accent-italic">I&rsquo;m an operator.</em>
+                I&rsquo;m not a professor. <em className="accent-italic">I&rsquo;m a small business owner finding the next leverage point to compete and win.</em>
               </h2>
             </Reveal>
             <Reveal delay={140}>
               <p className="mt-7 text-lg text-ink-mid leading-relaxed max-w-prose">
-                I run a 16-truck towing company in Columbus, Ohio. I was paying $650 a month for software that hadn&rsquo;t shipped a real new feature in years. So I learned AI, built my own platform, and cancelled the bill.
+                I own and run a 16-truck towing company in Columbus, OH. I was renting software for thousands a month, so I learned AI and built my own — software to run my business, and others as well.
               </p>
             </Reveal>
             <Reveal delay={200}>
               <p className="mt-5 text-lg text-ink-mid leading-relaxed max-w-prose">
-                If a tow company owner can do this, every small business owner can. You just need a teacher who speaks your language.
+                With over 20 SaaS systems built to date, I&rsquo;ve mastered using AI to power my business. Now I want to use that knowledge to power yours too.
               </p>
             </Reveal>
             <Reveal delay={260}>
@@ -54,7 +56,7 @@ export function FounderCallout() {
                   href="https://uncomfortable.manus.space/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-ghost text-ink"
+                  className="btn-armstrong"
                 >
                   Read #UNCOMFORTABLE (free) ↗
                 </a>
