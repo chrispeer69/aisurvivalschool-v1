@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SiteShell } from "@/components/SiteShell";
 import { PageHeader } from "@/components/PageHeader";
 import { CurriculumGrid } from "@/components/CurriculumGrid";
+import { MembershipNote } from "@/components/MembershipNote";
 import { Reveal } from "@/components/Reveal";
 import { WaitlistForm } from "@/components/forms/WaitlistForm";
 
@@ -194,6 +195,8 @@ export default function InPersonPage() {
           </div>
         </div>
       </section>
+
+      <MembershipNote />
 
       <section id="reserve" className="bg-paper">
         <div className="mx-auto max-w-editorial px-5 sm:px-8 py-20 sm:py-28">
