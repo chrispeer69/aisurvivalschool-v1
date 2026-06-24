@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Reveal } from "./Reveal";
 import { Uncomfortable } from "./Uncomfortable";
 
@@ -9,12 +10,16 @@ export function FounderCallout() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-5">
             <Reveal>
-              <div
-                aria-hidden
-                className="aspect-[4/5] bg-steel relative overflow-hidden border border-ink/10"
-              >
-                <div className="grid-backdrop" />
-                <div className="atmosphere-orange" />
+              <div className="aspect-[4/5] bg-steel relative overflow-hidden border border-ink/10">
+                <Image
+                  src="/chris-peer.png"
+                  alt="Christopher D. Peer"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  className="object-cover object-top"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/20 to-transparent" />
                 <div className="absolute inset-0 flex items-end p-6">
                   <div>
                     <div className="eyebrow text-orange">Christopher D. Peer</div>
