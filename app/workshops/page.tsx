@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SiteShell } from "@/components/SiteShell";
 import { PageHeader } from "@/components/PageHeader";
+import { CurriculumGrid } from "@/components/CurriculumGrid";
 import { Reveal } from "@/components/Reveal";
 import { WorkshopForm } from "@/components/forms/WorkshopForm";
 
@@ -269,6 +270,13 @@ export default function WorkshopsPage() {
           </div>
         </div>
       </section>
+
+      <CurriculumGrid
+        eyebrow="The curriculum"
+        headline="The twelve modules we pull from."
+        subhead="Half-day and full-day workshops draw from this 12-module curriculum and tune it to your industry — your team leaves using AI for their actual job."
+        tone="light"
+      />
 
       <section id="inquire" className="bg-paper-dim">
         <div className="mx-auto max-w-editorial px-5 sm:px-8 py-20 sm:py-28">

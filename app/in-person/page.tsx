@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SiteShell } from "@/components/SiteShell";
 import { PageHeader } from "@/components/PageHeader";
+import { CurriculumGrid } from "@/components/CurriculumGrid";
 import { Reveal } from "@/components/Reveal";
 import { WaitlistForm } from "@/components/forms/WaitlistForm";
 
@@ -113,6 +114,13 @@ export default function InPersonPage() {
           </div>
         </div>
       </section>
+
+      <CurriculumGrid
+        eyebrow="What you'll cover"
+        headline="Twelve modules. Beginner to mastering AI."
+        subhead="One module a week across the 12-week term — the same curriculum, taught live in the room at COhatch Polaris."
+        tone="light"
+      />
 
       <section className="bg-paper">
         <div className="mx-auto max-w-editorial px-5 sm:px-8 py-16 sm:py-20">

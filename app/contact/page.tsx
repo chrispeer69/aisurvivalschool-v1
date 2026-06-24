@@ -68,6 +68,18 @@ export default function ContactPage() {
                   </li>
                 </ul>
               </Reveal>
+              <Reveal delay={200}>
+                <div className="mt-8 border-t border-ink/10 pt-6">
+                  <p className="eyebrow text-orange-deep">Prefer to call or text?</p>
+                  <a
+                    href="tel:+16146337935"
+                    className="mt-2 inline-block serif text-[1.6rem] text-ink hover:text-orange-deep transition-colors"
+                  >
+                    614-633-7935
+                  </a>
+                  <p className="mt-1 text-sm text-ink-soft">Chris&rsquo;s cell — call or text.</p>
+                </div>
+              </Reveal>
             </div>
 
             <div className="lg:col-span-7">

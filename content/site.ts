@@ -63,6 +63,7 @@ export const site = {
         links: [
           { label: "Newsletter", href: "/resources#newsletter" },
           { label: "Email Chris", href: "/contact" },
+          { label: "Call or text: 614-633-7935", href: "tel:+16146337935" },
           {
             label: "Central Ohio Networkers",
             href: "https://centralohionetworkers.com/event-calendar",
