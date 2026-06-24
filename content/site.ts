@@ -49,7 +49,11 @@ export const site = {
             external: true,
             wordmark: true,
           },
-          { label: "Layers (the book)", href: "#" },
+          {
+            label: "Layers (the book)",
+            href: "https://layers-production-db71.up.railway.app/",
+            external: true,
+          },
           { label: "Hook, Haul & Hustle (the book)", href: "#" },
           {
             label: "Peerfield Press",
