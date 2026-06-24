@@ -13,6 +13,7 @@ export const site = {
       { label: "Cohorts", href: "/cohorts" },
       { label: "Course", href: "/course" },
       { label: "About", href: "/about" },
+      { label: "Blog", href: "/blog" },
       { label: "Resources", href: "/resources" },
     ],
     cta: { label: "Contact", href: "/contact" },
@@ -29,6 +30,7 @@ export const site = {
           { label: "Online cohorts", href: "/cohorts" },
           { label: "Self-paced course", href: "/course" },
           { label: "Free resources", href: "/resources" },
+          { label: "Blog", href: "/blog" },
         ],
       },
       {

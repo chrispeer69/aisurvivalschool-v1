@@ -4,6 +4,7 @@ import { SiteShell } from "@/components/SiteShell";
 import { PageHeader } from "@/components/PageHeader";
 import { Reveal } from "@/components/Reveal";
 import { NewsletterBanner } from "@/components/NewsletterBanner";
+import { sortedPosts, formatBlogDate } from "@/content/blog";
 
 export const metadata: Metadata = {
   title: "Resources · Free AI training for operators",
@@ -34,7 +35,38 @@ const downloads = [
   },
 ] as const;
 
+type VideoLink = {
+  title: string;
+  href: string;
+  source?: string;
+  date: string; // YYYY-MM-DD
+  note?: string;
+};
+
+// Curated helpful AI videos. Add new ones here — newest date first. Anything
+// posted within the last 7 days shows under "Latest releases" (up to 5); after
+// 7 days it moves into the Library automatically (recomputed on each deploy).
+const videos: VideoLink[] = [];
+
+function fmtVideoDate(d: string) {
+  return new Date(d).toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
 export default function ResourcesPage() {
+  const DAY = 86_400_000;
+  const now = Date.now();
+  const sortedVideos = [...videos].sort((a, b) => b.date.localeCompare(a.date));
+  const latestVideos = sortedVideos
+    .filter((v) => now - new Date(v.date).getTime() <= 7 * DAY)
+    .slice(0, 5);
+  const libraryVideos = sortedVideos.filter(
+    (v) => now - new Date(v.date).getTime() > 7 * DAY,
+  );
+
   return (
     <SiteShell>
       <PageHeader
@@ -51,33 +83,96 @@ export default function ResourcesPage() {
       <section className="bg-paper">
         <div className="mx-auto max-w-editorial px-5 sm:px-8 py-20 sm:py-24">
           <Reveal>
-            <p className="eyebrow text-orange-deep">YouTube</p>
+            <p className="eyebrow text-orange-deep">AI News on YouTube</p>
           </Reveal>
           <Reveal delay={80}>
             <h2 className="display-md mt-5 text-[2rem] sm:text-[2.6rem] max-w-3xl">
-              Watch me actually use AI in a real business.
+              The AI videos worth your time — in one place.
             </h2>
           </Reveal>
           <Reveal delay={140}>
             <p className="mt-5 text-ink-mid leading-relaxed max-w-prose">
-              Short videos: real prompts, real screen-share, real outcomes from running a towing company with AI as a co-worker.
+              Hand-picked videos I think every business owner should see. New drops sit up top; everything older lives in the library below, so students can find what matters without the doomscroll.
             </p>
           </Reveal>
 
+          {/* Latest releases */}
           <Reveal delay={200}>
-            <div className="mt-10 aspect-video bg-steel border border-steel-line relative overflow-hidden">
-              <div className="grid-backdrop" aria-hidden />
-              <div className="atmosphere-orange" aria-hidden />
-              <div className="absolute inset-0 flex items-center justify-center text-paper text-center px-6">
-                <div>
-                  <p className="eyebrow text-orange">Channel coming soon</p>
-                  <p className="serif italic mt-3 text-2xl">
-                    YouTube embed lands the day Chris ships the first video.
-                  </p>
-                </div>
-              </div>
+            <div className="mt-12 flex items-baseline justify-between border-b border-ink/15 pb-3">
+              <h3 className="serif text-[1.5rem] sm:text-[1.8rem]">Latest releases</h3>
+              <span className="eyebrow text-ink-soft">Last 7 days</span>
             </div>
           </Reveal>
+          {latestVideos.length > 0 ? (
+            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {latestVideos.map((v, i) => (
+                <Reveal key={v.href} delay={i * 50}>
+                  <a
+                    href={v.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group h-full bg-paper border border-ink/10 p-5 flex flex-col hover:border-orange transition-colors"
+                  >
+                    <div className="aspect-video bg-steel border border-steel-line mb-4 flex items-center justify-center">
+                      <span className="eyebrow text-orange">▶ Watch</span>
+                    </div>
+                    <p className="serif text-[1.15rem] leading-tight group-hover:text-orange-deep transition-colors">
+                      {v.title}
+                    </p>
+                    {v.note ? (
+                      <p className="mt-2 text-sm text-ink-mid leading-relaxed flex-1">
+                        {v.note}
+                      </p>
+                    ) : null}
+                    <p className="mt-3 text-xs text-ink-soft">
+                      {v.source ? `${v.source} · ` : ""}
+                      {fmtVideoDate(v.date)}
+                    </p>
+                  </a>
+                </Reveal>
+              ))}
+            </div>
+          ) : (
+            <p className="mt-6 text-ink-mid leading-relaxed">
+              New picks drop here soon — check back, or subscribe above and we&rsquo;ll point you to them.
+            </p>
+          )}
+
+          {/* Library */}
+          <Reveal>
+            <div className="mt-16 flex items-baseline justify-between border-b border-ink/15 pb-3">
+              <h3 className="serif text-[1.5rem] sm:text-[1.8rem]">The library</h3>
+              <span className="eyebrow text-ink-soft">Everything older</span>
+            </div>
+          </Reveal>
+          {libraryVideos.length > 0 ? (
+            <ul className="mt-4 divide-y divide-ink/10">
+              {libraryVideos.map((v) => (
+                <li key={v.href} className="py-3">
+                  <a
+                    href={v.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-baseline justify-between gap-4"
+                  >
+                    <span className="text-ink group-hover:text-orange-deep transition-colors">
+                      {v.title}
+                      {v.source ? (
+                        <span className="text-ink-soft"> · {v.source}</span>
+                      ) : null}
+                    </span>
+                    <span className="text-xs text-ink-soft whitespace-nowrap">
+                      {fmtVideoDate(v.date)}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="mt-6 text-ink-mid leading-relaxed">
+              The library fills in as videos age past a week — your full archive of picks, all in one place.
+            </p>
+          )}
         </div>
       </section>
 
@@ -142,8 +237,34 @@ export default function ResourcesPage() {
           </Reveal>
           <Reveal delay={140}>
             <p className="mt-5 text-ink-mid leading-relaxed max-w-prose">
-              First posts drop alongside the first cohort. Subscribe to the newsletter and you&rsquo;ll get them as they ship — no need to check back.
+              How a tow company owner actually uses AI to run a real business. No frameworks, no hype — just what works when the trucks have to roll.
             </p>
+          </Reveal>
+
+          <div className="mt-10 max-w-3xl divide-y divide-ink/10 border-t border-ink/10">
+            {sortedPosts().slice(0, 3).map((post, i) => (
+              <Reveal key={post.slug} delay={200 + i * 60}>
+                <Link href={`/blog/${post.slug}`} className="group block py-6">
+                  <p className="eyebrow text-orange-deep">{post.eyebrow}</p>
+                  <h3 className="serif text-[1.3rem] sm:text-[1.5rem] leading-tight mt-2 group-hover:text-orange-deep transition-colors">
+                    {post.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-ink-mid leading-relaxed">{post.subtitle}</p>
+                  <p className="mt-3 text-xs text-ink-soft font-mono">
+                    {formatBlogDate(post.date)} · {post.readTime}
+                  </p>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={400}>
+            <Link
+              href="/blog"
+              className="mt-8 inline-flex items-center gap-2 text-orange-deep hover:text-orange transition-colors text-sm font-semibold"
+            >
+              Read all field reports →
+            </Link>
           </Reveal>
         </div>
       </section>

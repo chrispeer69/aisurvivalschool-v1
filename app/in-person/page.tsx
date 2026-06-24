@@ -114,6 +114,26 @@ export default function InPersonPage() {
         </div>
       </section>
 
+      <section className="bg-paper">
+        <div className="mx-auto max-w-editorial px-5 sm:px-8 py-16 sm:py-20">
+          <div className="border-l-4 border-orange bg-paper-dim p-7 sm:p-9">
+            <Reveal>
+              <p className="eyebrow text-orange-deep">On-site at COhatch Polaris</p>
+            </Reveal>
+            <Reveal delay={80}>
+              <h2 className="display-md mt-4 text-[1.6rem] sm:text-[2.1rem] max-w-3xl">
+                Legal counsel in the room.
+              </h2>
+            </Reveal>
+            <Reveal delay={140}>
+              <p className="mt-4 text-ink-mid leading-relaxed max-w-prose">
+                Legal counsel is available at the COhatch Polaris class sessions. Talk through AI-related legal matters, or ask questions about your personal and business matters while you&rsquo;re there.
+              </p>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-paper-dim">
         <div className="mx-auto max-w-editorial px-5 sm:px-8 py-20 sm:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
