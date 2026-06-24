@@ -14,18 +14,23 @@ export const metadata: Metadata = {
 const downloads = [
   {
     title: "AI Survival cheat sheet",
-    body: "One-page reference. The five prompts every operator should have. Drops at launch.",
-    status: "Coming soon",
+    body: "One-page reference. The five prompts every business owner should have — copy, fill in the blanks, paste. Print it for the truck.",
+    status: "Read now",
+    href: "/ai-survival-cheat-sheet.html",
+    external: true,
   },
   {
     title: "Operator prompts library",
     body: "The same prompts I use to run my towing company. Customer service, marketing, hiring, ops.",
-    status: "Coming soon",
+    status: "Read now",
+    href: "/operator-prompts-library.html",
+    external: true,
   },
   {
     title: "Pick your model",
     body: "Claude vs ChatGPT vs Gemini vs Grok vs Perplexity. Plain-English breakdown.",
-    status: "Coming soon",
+    status: "Read now",
+    href: "/pick-your-model",
   },
 ] as const;
 
@@ -94,12 +99,30 @@ export default function ResourcesPage() {
                   <span className="chip chip-phase w-fit">{d.status}</span>
                   <h3 className="serif mt-5 text-[1.4rem] leading-tight">{d.title}</h3>
                   <p className="mt-3 text-ink-mid text-sm leading-relaxed flex-1">{d.body}</p>
-                  <Link
-                    href="#newsletter"
-                    className="mt-6 inline-flex items-center gap-2 text-orange-deep hover:text-orange transition-colors text-sm font-semibold"
-                  >
-                    Get notified →
-                  </Link>
+                  {"external" in d && d.external ? (
+                    <a
+                      href={d.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-6 inline-flex items-center gap-2 text-orange-deep hover:text-orange transition-colors text-sm font-semibold"
+                    >
+                      Open it →
+                    </a>
+                  ) : "href" in d ? (
+                    <Link
+                      href={d.href}
+                      className="mt-6 inline-flex items-center gap-2 text-orange-deep hover:text-orange transition-colors text-sm font-semibold"
+                    >
+                      Read it →
+                    </Link>
+                  ) : (
+                    <Link
+                      href="#newsletter"
+                      className="mt-6 inline-flex items-center gap-2 text-orange-deep hover:text-orange transition-colors text-sm font-semibold"
+                    >
+                      Get notified →
+                    </Link>
+                  )}
                 </article>
               </Reveal>
             ))}

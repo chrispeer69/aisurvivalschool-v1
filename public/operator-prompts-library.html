@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- AI Survival School — Operator Prompts Library -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Operator Prompts Library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --asphalt:#1c1c1a; --asphalt-2:#262624;
+    --concrete:#e7e3da; --paper:#f1eee6;
+    --amber:#f5a300; --amber-deep:#d98600; --rust:#b5471f;
+    --ink:#1c1c1a; --muted:#6f6a60; --line:#cfc9bd; --ok:#3f7d3f;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--concrete);color:var(--ink);font-family:"Barlow",system-ui,sans-serif;line-height:1.45;-webkit-font-smoothing:antialiased}
+  .sheet{max-width:900px;margin:0 auto;padding:28px 22px 70px}
+
+  .hazard{height:14px;background:repeating-linear-gradient(45deg,var(--asphalt) 0 18px,var(--amber) 18px 36px);border-radius:3px}
+
+  header.mast{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;padding:18px 0 14px;border-bottom:3px solid var(--asphalt);flex-wrap:wrap}
+  .brandtag{font-family:"Barlow Condensed";font-weight:700;letter-spacing:.18em;text-transform:uppercase;font-size:13px;color:var(--rust)}
+  h1{font-family:"Barlow Condensed";font-weight:800;text-transform:uppercase;line-height:.92;font-size:clamp(36px,7.5vw,64px);margin:2px 0 0}
+  h1 em{font-style:normal;color:var(--amber-deep)}
+  .sub{font-size:15px;color:var(--muted);max-width:52ch;margin-top:8px}
+  .stamp{font-family:"Barlow Condensed";text-transform:uppercase;text-align:right;border:2px solid var(--asphalt);padding:8px 12px;transform:rotate(-2deg);background:var(--paper)}
+  .stamp .big{font-weight:800;font-size:26px;line-height:.9}
+  .stamp .lil{font-size:11px;letter-spacing:.16em;font-weight:600;color:var(--muted)}
+
+  /* nav */
+  nav.jump{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 6px}
+  nav.jump a{font-family:"Barlow Condensed";font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:13px;text-decoration:none;color:var(--paper);background:var(--asphalt);padding:7px 13px;border-radius:3px}
+  nav.jump a:hover{background:var(--amber-deep)}
+
+  .howto{background:var(--asphalt);color:var(--paper);padding:11px 16px;margin:14px 0 28px;border-radius:4px;font-size:13.5px}
+  .howto b{color:var(--amber);font-family:"Barlow Condensed";letter-spacing:.08em;text-transform:uppercase;margin-right:6px}
+
+  /* category header */
+  .cat{margin:34px 0 14px;display:flex;align-items:center;gap:14px;scroll-margin-top:14px}
+  .cat-no{font-family:"Barlow Condensed";font-weight:800;font-size:15px;letter-spacing:.1em;color:var(--paper);background:var(--rust);padding:6px 10px;border-radius:3px}
+  .cat h2{font-family:"Barlow Condensed";font-weight:800;text-transform:uppercase;letter-spacing:.02em;font-size:30px;margin:0;line-height:1}
+  .cat .rule{flex:1;height:3px;background:var(--asphalt)}
+
+  /* prompt card */
+  .card{background:var(--paper);border:1.5px solid var(--line);border-left:6px solid var(--amber);border-radius:5px;margin:0 0 14px;overflow:hidden;break-inside:avoid}
+  .card-head{display:flex;align-items:baseline;gap:10px;padding:11px 16px;border-bottom:1.5px dashed var(--line);flex-wrap:wrap}
+  .tagid{font-family:"JetBrains Mono";font-weight:700;font-size:12px;color:var(--paper);background:var(--asphalt);padding:3px 7px;border-radius:3px}
+  .card-head h3{font-family:"Barlow Condensed";text-transform:uppercase;letter-spacing:.03em;font-weight:700;font-size:19px;margin:0;line-height:1}
+  .card-head .why{font-size:12.5px;color:var(--muted);width:100%;margin:4px 0 0}
+  .prompt-wrap{position:relative}
+  pre.prompt{margin:0;font-family:"JetBrains Mono";font-size:12.5px;line-height:1.6;background:var(--asphalt-2);color:#ece8df;padding:15px 16px 17px;white-space:pre-wrap;word-break:break-word}
+  pre.prompt .br{color:var(--amber)}
+  .copy{position:absolute;top:9px;right:9px;font-family:"Barlow Condensed";font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:12px;background:var(--amber);color:var(--asphalt);border:none;border-radius:3px;padding:5px 11px;cursor:pointer}
+  .copy:hover{background:#fff}
+  .copy.done{background:var(--ok);color:#fff}
+
+  footer{margin-top:34px;padding-top:16px;border-top:3px solid var(--asphalt);display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+  footer .tag{font-family:"Barlow Condensed";font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:17px}
+  footer .tag em{color:var(--amber-deep);font-style:normal}
+  footer .site{font-family:"JetBrains Mono";font-size:13px;color:var(--muted)}
+
+  .printbtn{display:inline-block;margin:6px 0 0;cursor:pointer;font-family:"Barlow Condensed";font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:13px;background:var(--asphalt);color:var(--paper);border:none;border-radius:3px;padding:8px 16px}
+
+  @media print{
+    body{background:#fff}.sheet{padding:0}
+    .copy,.printbtn,nav.jump{display:none}
+    pre.prompt{background:#1c1c1a !important}
+    pre.prompt,.hazard,.cat-no,.tagid,.howto,.stamp{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+  <div class="hazard"></div>
+
+  <header class="mast">
+    <div>
+      <div class="brandtag">AI Survival School · Operator Series</div>
+      <h1>Operator<br>Prompts <em>Library</em></h1>
+      <p class="sub">The actual prompts I use to run a 16-truck towing company. Customer service, marketing, hiring, ops. Steal them.</p>
+    </div>
+    <div class="stamp"><div class="lil">Property of</div><div class="big">THE YARD</div></div>
+  </header>
+
+  <nav class="jump">
+    <a href="#cs">Customer Service</a>
+    <a href="#mk">Marketing</a>
+    <a href="#hr">Hiring</a>
+    <a href="#op">Operations</a>
+  </nav>
+
+  <div class="howto">
+    <b>Use it:</b> Copy a prompt → replace every <strong style="color:var(--amber)">[bracket]</strong> with your real details → paste into Claude, ChatGPT, or Gemini → tell it to fix anything that's off.
+  </div>
+  <button class="printbtn" onclick="window.print()">Print / Save PDF</button>
+
+  <!-- ===== CUSTOMER SERVICE ===== -->
+  <div class="cat" id="cs"><span class="cat-no">01</span><h2>Customer Service</h2><div class="rule"></div></div>
+
+  <div class="card"><div class="card-head"><span class="tagid">CS-1</span><h3>De-escalate an Upset Customer</h3><div class="why">Calms the situation without admitting fault or starting a fight.</div></div>
+  <div class="prompt-wrap"><button class="copy" onclick="cp(this)">Copy</button>
+<pre class="prompt">A customer is upset about <span class="br">[price / wait time / vehicle damage /
+being towed from private property]</span>. Here's what they said: <span class="br">[paste]</span>.
+
+Write a calm, professional reply that acknowledges their frustration
+without admitting fault, states the facts plainly, and offers one
+concrete next step. Don't grovel, don't argue. Under 120 words.</pre></div></div>
+
+  <div class="card"><div class="card-head"><span class="tagid">CS-2</span><h3>Reply to a Google Review</h3><div class="why">Good or bad — protects the company and reads like a human wrote it.</div></div>
+  <div class="prompt-wrap"><button class="copy" onclick="cp(this)">Copy</button>
+<pre class="prompt">Write a reply to this <span class="br">[5-star / 1-star]</span> Google review of my towing
+company: <span class="br">[paste review]</span>.
+
+If positive: thank them, use our name, keep it human.
+If negative: stay professional, don't get defensive, take it offline
+with our number. Never admit liability. Under 80 words.</pre></div></div>
+
+  <div class="card"><div class="card-head"><span class="tagid">CS-3</span><h3>Inbound Tow Request — Fast Text Reply</h3><div class="why">Confirms the job and grabs the info you're missing, in seconds.</div></div>
+  <div class="prompt-wrap"><button class="copy" onclick="cp(this)">Copy</button>
+<pre class="prompt">A customer just texted needing service. Their message: <span class="br">[paste]</span>.
+
+Write a fast, professional reply that confirms: their location,
+vehicle, the service (tow / lockout / jump / winch-out), my ETA of
+<span class="br">[X]</span> minutes, and the <span class="br">[flat rate / starting price]</span>. Ask for any
+detail they left out. Friendly but tight.</pre></div></div>
+
+  <div class="card"><div class="card-head"><span class="tagid">CS-4</span><h3>Damage / Billing Dispute</h3><div class="why">Firm, respectful, and does not hand them a refund or an admission.</div></div>
+  <div class="prompt-wrap"><button class="copy" onclick="cp(this)">Copy</button>
+<pre class="prompt">A customer claims we <span class="br">[damaged their vehicle / overcharged them]</span>.
+Their message: <span class="br">[paste]</span>.
+
+Write a firm but professional reply that requests specifics (photos,
+time, driver name, invoice #) and explains our review process. Do NOT
+admit fault or promise a refund. Protect the company, stay respectful.</pre></div></div>
+
+  <!-- ===== MARKETING ===== -->
+  <div class="cat" id="mk"><span class="cat-no">02</span><h2>Marketing</h2><div class="rule"></div></div>
+
+  <div class="card"><div class="card-head"><span class="tagid">MK-1</span><h3>Local Social Post</h3><div class="why">Plain-spoken posts that sound local, not like a corporate ad.</div></div>
+  <div class="prompt-wrap"><button class="copy" onclick="cp(this)">Copy</button>
+<pre class="prompt">Write a <span class="br">[Facebook / Instagram]</span> post for my towing company in
+<span class="br">[city]</span>. Topic: <span class="br">[winter prep / storm season / now hiring /
+24-7 service / new truck]</span>.
+
+Local, plain-spoken, no corporate fluff. One clear call to action and
+our number <span class="br">[###-###-####]</span>. Give me 3 short versions.</pre></div></div>
+
+  <div class="card"><div class="card-head"><span class="tagid">MK-2</span><h3>Seasonal / Safety Post</h3><div class="why">Helpful first, salesy second — the kind of post people actually share.</div></div>
+  <div class="prompt-wrap"><button class="copy" onclick="cp(this)">Copy</button>
+<pre class="prompt">It's <span class="br">[season / weather event]</span> in <span class="br">[city]</span>. Write a short post that
+gives drivers 3 genuinely useful tips for <span class="br">[winter driving /
+breakdowns / accident scenes]</span>, then reminds them we're available 24/7.
+
+Helpful first, sales second. Add 5 local hashtags.</pre></div></div>
+
+  <div class="card"><div class="card-head"><span class="tagid">MK-3</span><h3>B2B Contract Outreach</h3><div class="why">Wins recurring work: PPI lots, body shops, dealers, fleets.</div></div>
+  <div class="prompt-wrap"><button class="copy" onclick="cp(this)">Copy</button>
+<pre class="prompt">Write a cold email pitching my towing company for a <span class="br">[private-property
+impound / roadside / accident recovery]</span> contract with <span class="br">[apartment
+complex / body shop / dealership / fleet]</span>.
+
+Lead with what's in it for THEM (reliable ETAs, clean trucks, proper
+insurance, one number to call). Under 150 words. End by asking for a
+10-minute call. Professional, not desperate.</pre></div></div>
+
+  <!-- ===== HIRING ===== -->
+  <div class="cat" id="hr"><span class="cat-no">03</span><h2>Hiring</h2><div class="rule"></div></div>
+
+  <div class="card"><div class="card-head"><span class="tagid">HR-1</span><h3>Driver Job Ad</h3><div class="why">Attracts reliable people and scares off the flakes on purpose.</div></div>
+  <div class="prompt-wrap"><button class="copy" onclick="cp(this)">Copy</button>
+<pre class="prompt">Write a job ad for a <span class="br">[tow operator / flatbed driver]</span> in <span class="br">[city]</span>.
+Pay: <span class="br">[$X]</span>. Requirements: <span class="br">[clean record? CDL? experience?]</span>.
+
+Write it to attract dependable people and filter out flakes — be honest
+about the hard parts (nights, weather, on-call). Plain language. End
+with how to apply: <span class="br">[text / call ###-###-####]</span>.</pre></div></div>
+
+  <div class="card"><div class="card-head"><span class="tagid">HR-2</span><h3>Screening Questions</h3><div class="why">Tells you what a good answer sounds like and what's a red flag.</div></div>
+  <div class="prompt-wrap"><button class="copy" onclick="cp(this)">Copy</button>
+<pre class="prompt">Give me 10 interview questions to screen a tow operator. I care most
+about: reliability, staying calm under pressure, handling angry
+customers, and not damaging vehicles.
+
+For each question, tell me what a GOOD answer sounds like and what's a
+RED FLAG.</pre></div></div>
+
+  <div class="card"><div class="card-head"><span class="tagid">HR-3</span><h3>Offer &amp; Rejection Texts</h3><div class="why">Two short messages, done — close the good one, pass on the rest cleanly.</div></div>
+  <div class="prompt-wrap"><button class="copy" onclick="cp(this)">Copy</button>
+<pre class="prompt">Write two short texts:
+(1) A job offer to <span class="br">[name]</span> for the <span class="br">[role]</span> at <span class="br">[$pay]</span>, asking them
+    to confirm a start date.
+(2) A polite rejection to a candidate we're passing on.
+
+Professional, human, brief.</pre></div></div>
+
+  <!-- ===== OPERATIONS ===== -->
+  <div class="cat" id="op"><span class="cat-no">04</span><h2>Operations</h2><div class="rule"></div></div>
+
+  <div class="card"><div class="card-head"><span class="tagid">OP-1</span><h3>SOP Writer</h3><div class="why">Turns "how I do it" into a written procedure a day-one hire can follow.</div></div>
+  <div class="prompt-wrap"><button class="copy" onclick="cp(this)">Copy</button>
+<pre class="prompt">Turn this into a clean written SOP my drivers can follow: <span class="br">[describe how
+you do the task — e.g. a PPI tow, a winch-out, end-of-shift truck check]</span>.
+
+Format: purpose, numbered step-by-step, safety notes, and what to do if
+something goes wrong. Write it for someone on their first day.</pre></div></div>
+
+  <div class="card"><div class="card-head"><span class="tagid">OP-2</span><h3>Incident Report</h3><div class="why">Turns a driver's rushed story into a clean, factual report — no opinions.</div></div>
+  <div class="prompt-wrap"><button class="copy" onclick="cp(this)">Copy</button>
+<pre class="prompt">My driver was in an incident. Here's what happened in their words:
+<span class="br">[paste]</span>.
+
+Turn it into a clean, factual incident report: date/time, location,
+vehicles involved, sequence of events, damage, witnesses, action taken.
+Neutral language, no blame. Flag any missing info I should collect.</pre></div></div>
+
+  <div class="card"><div class="card-head"><span class="tagid">OP-3</span><h3>Dispatch Triage</h3><div class="why">Decides which truck takes which call when everything hits at once.</div></div>
+  <div class="prompt-wrap"><button class="copy" onclick="cp(this)">Copy</button>
+<pre class="prompt">I have <span class="br">[#]</span> calls waiting and <span class="br">[#]</span> trucks available. The calls:
+<span class="br">[paste each: location, service, customer type — motor club / cash /
+police / contract]</span>.
+
+Prioritize them: which truck takes which call, in what order. Factor
+distance, urgency (accidents / blocking traffic first), and contract
+obligations. One line of reasoning per call.</pre></div></div>
+
+  <div class="card"><div class="card-head"><span class="tagid">OP-4</span><h3>Driver Daily Briefing</h3><div class="why">A 30-second morning text that sounds like a boss who's run the route.</div></div>
+  <div class="prompt-wrap"><button class="copy" onclick="cp(this)">Copy</button>
+<pre class="prompt">Write a short morning briefing text for my drivers for <span class="br">[today's date]</span>.
+Include: weather + road conditions in <span class="br">[city]</span>, a one-line safety
+reminder, today's priority (<span class="br">[contract coverage / heavy volume expected]</span>),
+and a quick close. Under 100 words. Sound like a boss who's been in the
+seat — not a memo.</pre></div></div>
+
+  <footer>
+    <div class="tag">Come for the skills. <em>Stay for the community.</em></div>
+    <div class="site">AI Survival School &nbsp;·&nbsp; Blue Collar AI</div>
+  </footer>
+</div>
+
+<script>
+  function cp(btn){
+    var pre = btn.parentElement.querySelector('pre.prompt');
+    var text = pre.innerText;
+    navigator.clipboard.writeText(text).then(function(){
+      var old=btn.textContent; btn.textContent='Copied ✓'; btn.classList.add('done');
+      setTimeout(function(){btn.textContent=old;btn.classList.remove('done');},1600);
+    }).catch(function(){
+      var r=document.createRange(); r.selectNode(pre);
+      window.getSelection().removeAllRanges(); window.getSelection().addRange(r);
+      try{document.execCommand('copy');btn.textContent='Copied ✓';btn.classList.add('done');}catch(e){}
+      window.getSelection().removeAllRanges();
+      setTimeout(function(){btn.textContent='Copy';btn.classList.remove('done');},1600);
+    });
+  }
+</script>
+
+</body>
+</html>

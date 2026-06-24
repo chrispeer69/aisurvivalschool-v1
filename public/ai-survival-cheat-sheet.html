@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- AI Survival School — One-Page Cheat Sheet -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Survival Cheat Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --asphalt:#1c1c1a;
+    --asphalt-2:#262624;
+    --concrete:#e7e3da;
+    --paper:#f1eee6;
+    --amber:#f5a300;
+    --amber-deep:#d98600;
+    --rust:#b5471f;
+    --ink:#1c1c1a;
+    --muted:#6f6a60;
+    --line:#cfc9bd;
+    --ok:#3f7d3f;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--concrete);
+    color:var(--ink);
+    font-family:"Barlow",system-ui,sans-serif;
+    line-height:1.45;
+    -webkit-font-smoothing:antialiased;
+  }
+  .sheet{
+    max-width:880px;
+    margin:0 auto;
+    padding:28px 22px 60px;
+  }
+
+  /* ---- Hazard bar + masthead ---- */
+  .hazard{
+    height:14px;
+    background:repeating-linear-gradient(45deg,var(--asphalt) 0 18px,var(--amber) 18px 36px);
+    border-radius:3px;
+  }
+  header.mast{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:16px;
+    padding:18px 0 14px;
+    border-bottom:3px solid var(--asphalt);
+    flex-wrap:wrap;
+  }
+  .brandtag{
+    font-family:"Barlow Condensed",sans-serif;
+    font-weight:700;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    font-size:13px;
+    color:var(--rust);
+  }
+  h1{
+    font-family:"Barlow Condensed",sans-serif;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.01em;
+    line-height:.92;
+    font-size:clamp(38px,8vw,68px);
+    margin:2px 0 0;
+  }
+  h1 em{font-style:normal;color:var(--amber-deep)}
+  .sub{
+    font-size:15px;
+    color:var(--muted);
+    max-width:46ch;
+    margin-top:8px;
+  }
+  .stamp{
+    font-family:"Barlow Condensed",sans-serif;
+    text-transform:uppercase;
+    text-align:right;
+    border:2px solid var(--asphalt);
+    padding:8px 12px;
+    transform:rotate(-2deg);
+    background:var(--paper);
+  }
+  .stamp .big{font-weight:800;font-size:30px;line-height:.9}
+  .stamp .lil{font-size:11px;letter-spacing:.16em;font-weight:600;color:var(--muted)}
+
+  /* ---- How to use strip ---- */
+  .howto{
+    display:flex;gap:18px;flex-wrap:wrap;
+    background:var(--asphalt);
+    color:var(--paper);
+    padding:12px 16px;
+    margin:16px 0 26px;
+    border-radius:4px;
+    font-size:13.5px;
+  }
+  .howto b{color:var(--amber);font-family:"Barlow Condensed";letter-spacing:.08em;text-transform:uppercase}
+  .howto span{display:inline-flex;gap:7px;align-items:baseline}
+  .howto .n{
+    font-family:"JetBrains Mono",monospace;font-weight:700;color:var(--amber);
+  }
+
+  /* ---- Prompt cards ---- */
+  .card{
+    background:var(--paper);
+    border:1.5px solid var(--line);
+    border-left:6px solid var(--amber);
+    border-radius:5px;
+    margin:0 0 16px;
+    overflow:hidden;
+    break-inside:avoid;
+  }
+  .card-head{
+    display:flex;align-items:center;gap:12px;
+    padding:12px 16px;
+    border-bottom:1.5px dashed var(--line);
+  }
+  .num{
+    font-family:"Barlow Condensed",sans-serif;
+    font-weight:800;font-size:26px;
+    background:var(--asphalt);color:var(--amber);
+    width:40px;height:40px;flex:0 0 40px;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:4px;
+  }
+  .card-head h2{
+    font-family:"Barlow Condensed",sans-serif;
+    text-transform:uppercase;letter-spacing:.03em;
+    font-weight:700;font-size:21px;margin:0;flex:1;line-height:1;
+  }
+  .card-head .why{font-size:12.5px;color:var(--muted);width:100%;margin:5px 0 0 52px}
+  .prompt-wrap{position:relative}
+  pre.prompt{
+    margin:0;
+    font-family:"JetBrains Mono",monospace;
+    font-size:12.5px;line-height:1.6;
+    background:var(--asphalt-2);
+    color:#ece8df;
+    padding:16px 16px 18px;
+    white-space:pre-wrap;
+    word-break:break-word;
+  }
+  pre.prompt .br{color:var(--amber)}
+  .copy{
+    position:absolute;top:10px;right:10px;
+    font-family:"Barlow Condensed",sans-serif;font-weight:700;
+    text-transform:uppercase;letter-spacing:.1em;font-size:12px;
+    background:var(--amber);color:var(--asphalt);
+    border:none;border-radius:3px;padding:5px 11px;cursor:pointer;
+  }
+  .copy:hover{background:#fff}
+  .copy.done{background:var(--ok);color:#fff}
+
+  /* ---- Footer ---- */
+  footer{
+    margin-top:26px;padding-top:16px;border-top:3px solid var(--asphalt);
+    display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;
+  }
+  footer .tag{
+    font-family:"Barlow Condensed",sans-serif;font-weight:700;
+    text-transform:uppercase;letter-spacing:.06em;font-size:17px;
+  }
+  footer .tag em{color:var(--amber-deep);font-style:normal}
+  footer .site{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--muted)}
+
+  .printbtn{
+    display:inline-block;margin:0 0 14px;cursor:pointer;
+    font-family:"Barlow Condensed";font-weight:700;text-transform:uppercase;letter-spacing:.1em;
+    font-size:13px;background:var(--asphalt);color:var(--paper);
+    border:none;border-radius:3px;padding:8px 16px;
+  }
+
+  @media print{
+    body{background:#fff}
+    .sheet{padding:0}
+    .copy,.printbtn{display:none}
+    pre.prompt{background:#1c1c1a !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .hazard,.num,.howto,.stamp{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .card{box-shadow:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+  <div class="hazard"></div>
+
+  <header class="mast">
+    <div>
+      <div class="brandtag">AI Survival School · Field Reference</div>
+      <h1>The 5 Prompts<br>Every <em>Business Owner</em> Needs</h1>
+      <p class="sub">Copy. Fill in the <strong style="color:var(--amber-deep)">[brackets]</strong>. Paste into Claude, ChatGPT, or Gemini. That's it.</p>
+    </div>
+    <div class="stamp">
+      <div class="lil">Keep in</div>
+      <div class="big">THE TRUCK</div>
+    </div>
+  </header>
+
+  <div class="howto">
+    <b>How&nbsp;to&nbsp;use</b>
+    <span><span class="n">1.</span> Hit Copy</span>
+    <span><span class="n">2.</span> Replace [brackets] with your details</span>
+    <span><span class="n">3.</span> Paste &amp; send</span>
+    <span><span class="n">4.</span> Tell it to fix what's off</span>
+  </div>
+
+  <button class="printbtn" onclick="window.print()">Print / Save PDF</button>
+
+  <!-- 1 -->
+  <div class="card">
+    <div class="card-head">
+      <div class="num">1</div>
+      <h2>Email — Write &amp; Triage</h2>
+      <div class="why">Stop staring at a blank inbox. One prompt writes the email, the other clears the pile.</div>
+    </div>
+    <div class="prompt-wrap">
+      <button class="copy" onclick="cp(this)">Copy</button>
+<pre class="prompt">WRITE: You are my assistant. Write a <span class="br">[professional / firm / friendly]</span>
+email to <span class="br">[who]</span> about <span class="br">[topic]</span>. Under <span class="br">[X]</span> words. Get to the
+point in sentence one. End with one clear ask. Give me 2 subject lines.
+
+TRIAGE: Here are my unread emails: <span class="br">[paste subjects/senders]</span>.
+Sort into: (1) Reply now (2) This week (3) Delegate (4) Archive.
+For each "Reply now," draft a 2-sentence reply I can approve.</pre>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="card">
+    <div class="card-head">
+      <div class="num">2</div>
+      <h2>Desktop &amp; File Organizer</h2>
+      <div class="why">Turn a junk-drawer desktop into a system you'll actually keep using.</div>
+    </div>
+    <div class="prompt-wrap">
+      <button class="copy" onclick="cp(this)">Copy</button>
+<pre class="prompt">Here are the files cluttering my desktop/drive: <span class="br">[paste file names
+or describe them]</span>.
+
+Build me a simple folder system — max 7 top-level folders — and tell me
+exactly which files go where. Then give me ONE naming rule so future
+files stay sorted (example: YYYY-MM-DD_Client_DocType). Keep it dead
+simple. I'm not a file clerk.</pre>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="card">
+    <div class="card-head">
+      <div class="num">3</div>
+      <h2>Daily Budget &amp; Expense Tracker — Excel-Ready</h2>
+      <div class="why">A working spreadsheet with the formulas already written. Paste straight into Excel or Sheets.</div>
+    </div>
+    <div class="prompt-wrap">
+      <button class="copy" onclick="cp(this)">Copy</button>
+<pre class="prompt">Build me a daily budget &amp; expense tracker I can paste into Excel/Google
+Sheets. Columns: Date | Category | Description | Money In | Money Out |
+Running Balance.
+
+My categories: <span class="br">[fuel, payroll, repairs, insurance, tolls, ...]</span>.
+
+Give me the exact formula for Running Balance and a monthly total by
+category. Output as a table I can copy directly into the spreadsheet,
+then list the formulas separately so I know what to put where.</pre>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="card">
+    <div class="card-head">
+      <div class="num">4</div>
+      <h2>Bookkeeping Assistant</h2>
+      <div class="why">Categorizes your transactions and flags the stuff your accountant charges you to find.</div>
+    </div>
+    <div class="prompt-wrap">
+      <button class="copy" onclick="cp(this)">Copy</button>
+<pre class="prompt">Act as my bookkeeper. I'll paste raw transactions (date, vendor, amount).
+For each one:
+ • Assign a category
+ • Mark Income or Expense
+ • Flag anything that looks personal, duplicated, or a tax write-off
+
+At the end: total by category and give me my net for the period.
+Ask me before guessing on anything unclear. Don't make numbers up.
+
+Transactions: <span class="br">[paste here]</span></pre>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="card">
+    <div class="card-head">
+      <div class="num">5</div>
+      <h2>Resume Reviewer + Score</h2>
+      <div class="why">Screen applicants in 30 seconds. Honest scoring, not polite filler.</div>
+    </div>
+    <div class="prompt-wrap">
+      <button class="copy" onclick="cp(this)">Copy</button>
+<pre class="prompt">You're the hiring manager for a <span class="br">[role]</span> at my company.
+Here's a resume: <span class="br">[paste]</span>.
+
+Score it 0–100 on: relevant experience, skills match, red flags
+(gaps / job-hopping), and clarity. Then give me:
+ • The score + one-line verdict
+ • Top 3 strengths
+ • Top 3 concerns
+ • 5 interview questions that test the weak spots
+
+Be honest, not polite. I'd rather know now.</pre>
+    </div>
+  </div>
+
+  <footer>
+    <div class="tag">Come for the skills. <em>Stay for the community.</em></div>
+    <div class="site">AI Survival School &nbsp;·&nbsp; Blue Collar AI</div>
+  </footer>
+</div>
+
+<script>
+  function cp(btn){
+    var pre = btn.parentElement.querySelector('pre.prompt');
+    var text = pre.innerText;
+    navigator.clipboard.writeText(text).then(function(){
+      var old = btn.textContent;
+      btn.textContent = 'Copied ✓';
+      btn.classList.add('done');
+      setTimeout(function(){ btn.textContent = old; btn.classList.remove('done'); }, 1600);
+    }).catch(function(){
+      var r = document.createRange(); r.selectNode(pre);
+      window.getSelection().removeAllRanges(); window.getSelection().addRange(r);
+      try{ document.execCommand('copy'); btn.textContent='Copied ✓'; btn.classList.add('done'); }catch(e){}
+      window.getSelection().removeAllRanges();
+      setTimeout(function(){ btn.textContent='Copy'; btn.classList.remove('done'); },1600);
+    });
+  }
+</script>
+
+</body>
+</html>
