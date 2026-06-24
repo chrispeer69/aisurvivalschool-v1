@@ -12,7 +12,7 @@ export function FounderCallout() {
             <Reveal>
               <div className="aspect-[4/5] bg-steel relative overflow-hidden border border-ink/10">
                 <Image
-                  src="/chris-peer.png"
+                  src="/chris-peer-cutout.png"
                   alt="Christopher D. Peer"
                   fill
                   sizes="(max-width: 1024px) 100vw, 40vw"
