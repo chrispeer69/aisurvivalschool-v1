@@ -35,20 +35,79 @@ const downloads = [
   },
 ] as const;
 
-type VideoLink = {
+type NewsItem = {
   title: string;
   href: string;
   source?: string;
   date: string; // YYYY-MM-DD
   note?: string;
+  kind: "video" | "article";
 };
 
-// Curated helpful AI videos. Add new ones here — newest date first. Anything
-// posted within the last 7 days shows under "Latest releases" (up to 5); after
-// 7 days it moves into the Library automatically (recomputed on each deploy).
-const videos: VideoLink[] = [];
+// Curated AI news — videos and articles worth a business owner's time. Add new
+// items here, newest date first. Anything within the last 7 days shows under
+// "Latest" (up to 5); after 7 days it moves into the Library automatically
+// (recomputed on each deploy).
+const news: NewsItem[] = [
+  {
+    kind: "video",
+    title: "How To Use Claude AI to Automate Going Viral on TikTok & Instagram in 2026",
+    href: "https://youtu.be/XmQhu38Rmz0",
+    source: "YouTube",
+    date: "2026-06-24",
+    note: "A practical walkthrough of using Claude to spin up short-form content that actually performs.",
+  },
+  {
+    kind: "video",
+    title: "Claude Just Dropped ULTRA CODE — everything you need to know in 5 min",
+    href: "https://youtu.be/IgIlIWqeT-I",
+    source: "YouTube",
+    date: "2026-06-24",
+    note: "A fast rundown of Claude's new Ultra Code — what it is and why it matters.",
+  },
+  {
+    kind: "video",
+    title: "Ray Kurzweil Predicts AI Will Change Humanity Completely by 2030",
+    href: "https://youtu.be/fddhXXIjB6w",
+    source: "YouTube",
+    date: "2026-06-24",
+    note: "The big-picture view — where AI is headed and how fast, from one of its most famous forecasters.",
+  },
+  {
+    kind: "video",
+    title: "You're not behind (yet): How to learn AI in 18 minutes",
+    href: "https://youtu.be/0Tch0N5nsRU",
+    source: "YouTube",
+    date: "2026-06-24",
+    note: "A fast, no-fluff primer on getting started with AI — exactly where to begin if you feel behind.",
+  },
+  {
+    kind: "article",
+    title: "Introducing Claude Tag",
+    href: "https://www.anthropic.com/news/introducing-claude-tag",
+    source: "Anthropic",
+    date: "2026-06-23",
+    note: "Claude joins your Slack as a teammate — tag @Claude to hand off work it runs in the background.",
+  },
+  {
+    kind: "article",
+    title: "Claude Corps",
+    href: "https://www.anthropic.com/news/claude-corps",
+    source: "Anthropic",
+    date: "2026-06-11",
+    note: "A $150M fellowship placing 1,000 early-career workers with nonprofits to build real AI skills.",
+  },
+  {
+    kind: "article",
+    title: "Claude Opus 4.8",
+    href: "https://www.anthropic.com/news/claude-opus-4-8",
+    source: "Anthropic",
+    date: "2026-05-28",
+    note: "Anthropic's upgraded flagship model — sharper judgment, stronger coding, same price.",
+  },
+];
 
-function fmtVideoDate(d: string) {
+function fmtNewsDate(d: string) {
   return new Date(d).toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
@@ -57,15 +116,9 @@ function fmtVideoDate(d: string) {
 }
 
 export default function ResourcesPage() {
-  const DAY = 86_400_000;
-  const now = Date.now();
-  const sortedVideos = [...videos].sort((a, b) => b.date.localeCompare(a.date));
-  const latestVideos = sortedVideos
-    .filter((v) => now - new Date(v.date).getTime() <= 7 * DAY)
-    .slice(0, 5);
-  const libraryVideos = sortedVideos.filter(
-    (v) => now - new Date(v.date).getTime() > 7 * DAY,
-  );
+  const sortedNews = [...news].sort((a, b) => b.date.localeCompare(a.date));
+  const latestNews = sortedNews.slice(0, 5);
+  const libraryNews = sortedNews.slice(5);
 
   return (
     <SiteShell>
@@ -75,7 +128,7 @@ export default function ResourcesPage() {
           { text: "Free stuff. ", italic: false },
           { text: "Top of the funnel.", italic: true },
         ]}
-        subhead="Newsletter, YouTube, prompts library, and the blog. The fastest no-cost way to start using AI like an operator."
+        subhead="Newsletter, AI news, prompts library, and the blog. The fastest no-cost way to start using AI like an operator."
       />
 
       <NewsletterBanner source="resources-top" id="newsletter" />
@@ -83,29 +136,29 @@ export default function ResourcesPage() {
       <section className="bg-paper">
         <div className="mx-auto max-w-editorial px-5 sm:px-8 py-20 sm:py-24">
           <Reveal>
-            <p className="eyebrow text-orange-deep">AI News on YouTube</p>
+            <p className="eyebrow text-orange-deep">AI News</p>
           </Reveal>
           <Reveal delay={80}>
             <h2 className="display-md mt-5 text-[2rem] sm:text-[2.6rem] max-w-3xl">
-              The AI videos worth your time — in one place.
+              The AI news worth your time — in one place.
             </h2>
           </Reveal>
           <Reveal delay={140}>
             <p className="mt-5 text-ink-mid leading-relaxed max-w-prose">
-              Hand-picked videos I think every business owner should see. New drops sit up top; everything older lives in the library below, so students can find what matters without the doomscroll.
+              Hand-picked videos and articles I think every business owner should see. New drops sit up top; everything older lives in the library below, so you find what matters without the doomscroll.
             </p>
           </Reveal>
 
-          {/* Latest releases */}
+          {/* Latest */}
           <Reveal delay={200}>
             <div className="mt-12 flex items-baseline justify-between border-b border-ink/15 pb-3">
-              <h3 className="serif text-[1.5rem] sm:text-[1.8rem]">Latest releases</h3>
-              <span className="eyebrow text-ink-soft">Last 7 days</span>
+              <h3 className="serif text-[1.5rem] sm:text-[1.8rem]">Latest</h3>
+              <span className="eyebrow text-ink-soft">5 most recent</span>
             </div>
           </Reveal>
-          {latestVideos.length > 0 ? (
+          {latestNews.length > 0 ? (
             <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {latestVideos.map((v, i) => (
+              {latestNews.map((v, i) => (
                 <Reveal key={v.href} delay={i * 50}>
                   <a
                     href={v.href}
@@ -114,7 +167,9 @@ export default function ResourcesPage() {
                     className="group h-full bg-paper border border-ink/10 p-5 flex flex-col hover:border-orange transition-colors"
                   >
                     <div className="aspect-video bg-steel border border-steel-line mb-4 flex items-center justify-center">
-                      <span className="eyebrow text-orange">▶ Watch</span>
+                      <span className="eyebrow text-orange">
+                        {v.kind === "video" ? "▶ Watch" : "Read ↗"}
+                      </span>
                     </div>
                     <p className="serif text-[1.15rem] leading-tight group-hover:text-orange-deep transition-colors">
                       {v.title}
@@ -126,7 +181,7 @@ export default function ResourcesPage() {
                     ) : null}
                     <p className="mt-3 text-xs text-ink-soft">
                       {v.source ? `${v.source} · ` : ""}
-                      {fmtVideoDate(v.date)}
+                      {fmtNewsDate(v.date)}
                     </p>
                   </a>
                 </Reveal>
@@ -142,12 +197,12 @@ export default function ResourcesPage() {
           <Reveal>
             <div className="mt-16 flex items-baseline justify-between border-b border-ink/15 pb-3">
               <h3 className="serif text-[1.5rem] sm:text-[1.8rem]">The library</h3>
-              <span className="eyebrow text-ink-soft">Everything older</span>
+              <span className="eyebrow text-ink-soft">The archive</span>
             </div>
           </Reveal>
-          {libraryVideos.length > 0 ? (
+          {libraryNews.length > 0 ? (
             <ul className="mt-4 divide-y divide-ink/10">
-              {libraryVideos.map((v) => (
+              {libraryNews.map((v) => (
                 <li key={v.href} className="py-3">
                   <a
                     href={v.href}
@@ -156,13 +211,16 @@ export default function ResourcesPage() {
                     className="group flex items-baseline justify-between gap-4"
                   >
                     <span className="text-ink group-hover:text-orange-deep transition-colors">
+                      <span className="text-ink-soft mr-2 text-xs uppercase tracking-wide">
+                        {v.kind === "video" ? "Video" : "Article"}
+                      </span>
                       {v.title}
                       {v.source ? (
                         <span className="text-ink-soft"> · {v.source}</span>
                       ) : null}
                     </span>
                     <span className="text-xs text-ink-soft whitespace-nowrap">
-                      {fmtVideoDate(v.date)}
+                      {fmtNewsDate(v.date)}
                     </span>
                   </a>
                 </li>
@@ -170,7 +228,7 @@ export default function ResourcesPage() {
             </ul>
           ) : (
             <p className="mt-6 text-ink-mid leading-relaxed">
-              The library fills in as videos age past a week — your full archive of picks, all in one place.
+              The library fills in as picks age past a week — your full archive, all in one place.
             </p>
           )}
         </div>
