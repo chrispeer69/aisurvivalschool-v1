@@ -54,7 +54,11 @@ export const site = {
             href: "https://layers-production-db71.up.railway.app/",
             external: true,
           },
-          { label: "Hook, Haul & Hustle (the book)", href: "#" },
+          {
+            label: "Hook, Haul & Hustle (the book)",
+            href: "https://hook-haul-hustle-production.up.railway.app/",
+            external: true,
+          },
           {
             label: "Peerfield Press",
             href: "https://peerfieldpress.com",
