@@ -2,6 +2,8 @@ import Link from "next/link";
 
 type NavLink = { label: string; href: string };
 
+const SSO_URL = "https://us-tow-sso-production.up.railway.app/";
+
 type Props = {
   brand: string;
   links: readonly NavLink[];
@@ -41,6 +43,13 @@ export function Nav({ brand, links, cta, tone = "dark" }: Props) {
 
         <div className="flex items-center gap-4 sm:gap-5">
           <span className="sr-only">{brand}</span>
+          {/* US Tow SSO: marketing site has no accounts, so this just links to the central sign-in. */}
+          <a
+            href={SSO_URL}
+            className="text-sm opacity-80 hover:opacity-100 transition-opacity"
+          >
+            Sign in
+          </a>
           <Link
             href={cta.href}
             className="text-sm border border-current px-4 py-2 hover:bg-orange hover:text-paper hover:border-orange transition-colors"
